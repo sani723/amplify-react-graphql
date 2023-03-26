@@ -20,6 +20,9 @@
       },
       "storage": {
         "imagestorage": {}
+      },
+      "analytics": {
+        "amplifyreactgraphql": {}
       }
     }
   }

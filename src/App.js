@@ -2,7 +2,7 @@ import { useState, useEffect
  } from 'react';
 
 import './App.css';
-import { API, Storage } from "aws-amplify";
+import { API, Storage, Analytics } from "aws-amplify";
 
 
 import "@aws-amplify/ui-react/styles.css";
@@ -78,6 +78,31 @@ const App = ({ signOut }) => {
     });
   }
 
+  Analytics.autoTrack('event', {
+    // REQUIRED, turn on/off the auto tracking
+    enable: true,
+    // OPTIONAL, events you want to track, by default is 'click'
+    events: ['click'],
+    // OPTIONAL, the prefix of the selectors, by default is 'data-amplify-analytics-'
+    // in order to avoid collision with the user agent, according to https://www.w3schools.com/tags/att_global_data.asp
+    // always put 'data' as the first prefix
+    selectorPrefix: 'data-amplify-analytics-',
+    // OPTIONAL, the service provider, by default is the Amazon Pinpoint
+    provider: 'AWSPinpoint',
+    // OPTIONAL, the default attributes of the event, you can either pass an object or a function
+    // which allows you to define dynamic attributes
+    attributes: {
+      attr: 'attr'
+    }
+    // when using function
+    // attributes: () => {
+    //    const attr = somewhere();
+    //    return {
+    //        myAttr: attr
+    //    }
+    // }
+  });
+
   return (
     <View className="App">
       <Heading level={1}>My Notes App</Heading>
@@ -105,7 +130,13 @@ const App = ({ signOut }) => {
             type="file"
             style={{ alignSelf: "end" }}
           />
-          <Button type="submit" variation="primary">
+          <Button 
+            type="submit" 
+            variation="primary" 
+            data-amplify-analytics-on="click"
+            data-amplify-analytics-name="click"
+            data-amplify-analytics-attrs="attr1:attr1_value,attr2:attr2_value"
+          >
             Create Note
           </Button>
         </Flex>

@@ -1,4 +1,10 @@
 {
+  "analytics": {
+    "amplifyreactgraphql": {
+      "providerPlugin": "awscloudformation",
+      "service": "Pinpoint"
+    }
+  },
   "api": {
     "amplifyreactgraphql": {
       "dependsOn": [],

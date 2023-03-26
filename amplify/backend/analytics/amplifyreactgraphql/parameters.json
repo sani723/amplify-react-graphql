@@ -1,0 +1,21 @@
+{
+    "appName": "amplifyreactgraphql",
+    "roleName": "pinpointLambdaRolecb700808",
+    "cloudformationPolicyName": "cloudformationPolicycb700808",
+    "cloudWatchPolicyName": "cloudWatchPolicycb700808",
+    "pinpointPolicyName": "pinpointPolicycb700808",
+    "authPolicyName": "pinpoint_amplify_cb700808",
+    "unauthPolicyName": "pinpoint_amplify_cb700808",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}
